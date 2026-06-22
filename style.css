@@ -1,0 +1,751 @@
+/* ============================================
+   Global Styles & Variables
+   ============================================ */
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --light-bg: #ecf0f1;
+    --dark-text: #2c3e50;
+    --border-radius: 8px;
+    --box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: var(--dark-text);
+}
+
+/* ============================================
+   Container & Layout
+   ============================================ */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ============================================
+   Sidebar Styles
+   ============================================ */
+
+.sidebar {
+    width: 350px;
+    background: white;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    z-index: 50;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.panel {
+    border-bottom: 1px solid #eee;
+    padding: 20px;
+    margin: 0;
+}
+
+.panel h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel h4 {
+    font-size: 14px;
+    margin: 12px 0 8px;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.panel p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* ============================================
+   Title Panel
+   ============================================ */
+
+.title-panel {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+}
+
+.title-panel p {
+    color: var(--dark-text);
+    font-size: 13px;
+}
+
+/* ============================================
+   Search Panel
+   ============================================ */
+
+.search-panel {
+    background: #f8f9fa;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 13px;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.search-results {
+    margin-top: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    padding: 8px 12px;
+    margin: 4px 0;
+    background: white;
+    border-left: 3px solid var(--secondary-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.search-result-item:hover {
+    background: #f0f7ff;
+    transform: translateX(4px);
+}
+
+/* ============================================
+   Info Panel & Classification
+   ============================================ */
+
+.info-panel {
+    max-height: none;
+}
+
+.info-content {
+    font-size: 13px;
+}
+
+.info-section {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.info-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.classification-list {
+    list-style: none;
+    margin: 8px 0;
+}
+
+.classification-list li {
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.badge {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: white;
+    font-weight: 600;
+}
+
+.badge.excellent {
+    background-color: #27ae60;
+}
+
+.badge.good {
+    background-color: #52c41a;
+}
+
+.badge.moderate {
+    background-color: #faad14;
+}
+
+.badge.poor {
+    background-color: #ff7a45;
+}
+
+.badge.very-poor {
+    background-color: #ff4d4f;
+}
+
+.badge.hotspot {
+    background-color: #eb2f96;
+}
+
+.services-list {
+    list-style: none;
+    margin: 8px 0;
+}
+
+.services-list li {
+    padding: 6px 0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+}
+
+.services-list i {
+    width: 20px;
+    text-align: center;
+}
+
+/* ============================================
+   Legend Panel
+   ============================================ */
+
+.legend-panel {
+    background: #f8f9fa;
+}
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    border: 1px solid #999;
+}
+
+/* ============================================
+   Map Container
+   ============================================ */
+
+.map-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.leaflet-container {
+    font-family: inherit;
+}
+
+.leaflet-popup-content {
+    font-size: 12px;
+    font-family: inherit;
+}
+
+.leaflet-popup-content p {
+    margin: 4px 0;
+}
+
+.popup-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.popup-item {
+    margin: 6px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-label {
+    font-weight: 600;
+    font-size: 11px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.popup-value {
+    font-size: 12px;
+    color: var(--dark-text);
+    margin-top: 2px;
+}
+
+/* ============================================
+   Scale Bar & Loading Indicator
+   ============================================ */
+
+.scale-bar {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    font-size: 11px;
+    color: #666;
+    z-index: 40;
+}
+
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    z-index: 45;
+    display: none;
+}
+
+.loading-indicator.active {
+    display: block;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--secondary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-indicator p {
+    color: #666;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* ============================================
+   Layer Control Panel
+   ============================================ */
+
+.layer-control-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 15px;
+    z-index: 40;
+    max-width: 220px;
+}
+
+.layer-control-panel h4 {
+    font-size: 13px;
+    margin: 0 0 12px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    color: #555;
+    transition: var(--transition);
+}
+
+.control-item:hover {
+    color: var(--secondary-color);
+}
+
+.control-item input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: var(--secondary-color);
+}
+
+/* ============================================
+   Feature Info Panel
+   ============================================ */
+
+.feature-info-panel {
+    position: fixed;
+    bottom: -400px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+    max-height: 350px;
+    overflow-y: auto;
+    z-index: 100;
+    transition: bottom 0.3s ease;
+}
+
+.feature-info-panel.active {
+    bottom: 0;
+}
+
+.feature-info-content {
+    padding: 20px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+    transition: var(--transition);
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: var(--danger-color);
+}
+
+.feature-info-panel h3 {
+    font-size: 18px;
+    margin: 0 0 15px;
+    color: var(--primary-color);
+    padding-right: 30px;
+}
+
+.feature-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.detail-item {
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--secondary-color);
+}
+
+.detail-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-text);
+}
+
+/* ============================================
+   Marker Styles
+   ============================================ */
+
+.marker-hospital {
+    color: #FF4444;
+}
+
+.marker-school {
+    color: #4444FF;
+}
+
+.marker-bank {
+    color: #44FF44;
+}
+
+.marker-park {
+    color: #22AA22;
+}
+
+.marker-bus {
+    color: #FF8800;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .title {
+        font-size: 22px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    .sidebar {
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: 200px;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        max-height: 35vh;
+    }
+    
+    .map-container {
+        flex: 1;
+    }
+    
+    .title {
+        font-size: 20px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    .layer-control-panel {
+        top: 10px;
+        right: 10px;
+        max-width: 200px;
+        padding: 12px;
+    }
+    
+    .layer-control-panel h4 {
+        font-size: 12px;
+    }
+    
+    .control-item {
+        font-size: 11px;
+    }
+    
+    .feature-info-panel {
+        width: 95%;
+        max-width: 100%;
+        max-height: 40vh;
+    }
+    
+    .feature-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        height: 100%;
+    }
+    
+    .header {
+        padding: 15px;
+    }
+    
+    .title {
+        font-size: 18px;
+        gap: 8px;
+    }
+    
+    .subtitle {
+        font-size: 11px;
+    }
+    
+    .sidebar {
+        height: 150px;
+        max-height: 25vh;
+    }
+    
+    .panel {
+        padding: 15px;
+    }
+    
+    .panel h2, .panel h3 {
+        font-size: 14px;
+    }
+    
+    .panel h4 {
+        font-size: 12px;
+    }
+    
+    .panel p {
+        font-size: 12px;
+    }
+    
+    .search-input {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    
+    .layer-control-panel {
+        top: 5px;
+        right: 5px;
+        max-width: 180px;
+        padding: 10px;
+    }
+    
+    .layer-control-panel h4 {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+    
+    .control-item {
+        font-size: 10px;
+    }
+    
+    .feature-info-panel {
+        max-height: 50vh;
+    }
+    
+    .feature-info-content {
+        padding: 15px;
+    }
+    
+    .feature-info-panel h3 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+}
+
+/* ============================================
+   Sidebar Scrolling
+   ============================================ */
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
+
+button, input, label {
+    font-family: inherit;
+}
+
+button:focus, input:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+.search-result-item:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: -2px;
+}
