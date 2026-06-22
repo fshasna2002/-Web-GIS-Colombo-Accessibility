@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Inequality of Urban Services in Colombo District</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <i class="fas fa-globe-americas"></i>
+                    Spatial Inequality of Urban Services in Colombo District
+                </h1>
+                <p class="subtitle">Accessibility Index Analysis & Urban Service Distribution</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Title Panel -->
+                <div class="panel title-panel">
+                    <h2><i class="fas fa-map-location-dot"></i> Study Overview</h2>
+                    <p>This application analyzes the spatial distribution of urban services and identifies areas with insufficient accessibility to essential services in the Colombo District.</p>
+                </div>
+
+                <!-- Search Panel -->
+                <div class="panel search-panel">
+                    <h3><i class="fas fa-search"></i> Search GN Division</h3>
+                    <input type="text" id="searchBox" class="search-input" placeholder="Type GN Division name...">
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+
+                <!-- Information Panel -->
+                <div class="panel info-panel">
+                    <h3><i class="fas fa-info-circle"></i> Project Information</h3>
+                    <div class="info-content">
+                        <div class="info-section">
+                            <h4>Accessibility Index (AI)</h4>
+                            <p>The Accessibility Index is calculated based on proximity and density of urban services including hospitals, schools, banks, parks, and bus stops.</p>
+                        </div>
+                        
+                        <div class="info-section">
+                            <h4>Classification Scale</h4>
+                            <ul class="classification-list">
+                                <li><span class="badge excellent">Excellent</span> 0.8 - 1.0</li>
+                                <li><span class="badge good">Good</span> 0.6 - 0.8</li>
+                                <li><span class="badge moderate">Moderate</span> 0.4 - 0.6</li>
+                                <li><span class="badge poor">Poor</span> 0.2 - 0.4</li>
+                                <li><span class="badge very-poor">Very Poor</span> 0.0 - 0.2</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-section">
+                            <h4>Priority Hotspots</h4>
+                            <div id="hotspotStats">
+                                <p>Loading hotspot analysis...</p>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h4>Urban Services Included</h4>
+                            <ul class="services-list">
+                                <li><i class="fas fa-hospital"></i> Hospitals</li>
+                                <li><i class="fas fa-school"></i> Schools</li>
+                                <li><i class="fas fa-bank"></i> Banks</li>
+                                <li><i class="fas fa-tree"></i> Parks</li>
+                                <li><i class="fas fa-bus"></i> Bus Stops</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legend Panel -->
+                <div class="panel legend-panel">
+                    <h3><i class="fas fa-palette"></i> Accessibility Legend</h3>
+                    <div id="legend" class="legend"></div>
+                </div>
+            </aside>
+
+            <!-- Map Container -->
+            <main class="map-container">
+                <div id="map"></div>
+                
+                <!-- Scale Bar -->
+                <div id="scale" class="scale-bar"></div>
+                
+                <!-- Layer Control -->
+                <div class="layer-control-panel">
+                    <h4><i class="fas fa-layer-group"></i> Layers</h4>
+                    <div class="controls">
+                        <label class="control-item">
+                            <input type="checkbox" id="toggleAccessibility" checked>
+                            <span>Accessibility Index</span>
+                        </label>
+                        <label class="control-item">
+                            <input type="checkbox" id="toggleHotspots" checked>
+                            <span>Priority Hotspots</span>
+                        </label>
+                        <label class="control-item">
+                            <input type="checkbox" id="toggleHospitals" checked>
+                            <span><i class="fas fa-hospital" style="color: #FF4444;"></i> Hospitals</span>
+                        </label>
+                        <label class="control-item">
+                            <input type="checkbox" id="toggleSchools" checked>
+                            <span><i class="fas fa-school" style="color: #4444FF;"></i> Schools</span>
+                        </label>
+                        <label class="control-item">
+                            <input type="checkbox" id="toggleBanks" checked>
+                            <span><i class="fas fa-bank" style="color: #44FF44;"></i> Banks</span>
+                        </label>
+                        <label class="control-item">
+                            <input type="checkbox" id="toggleParks" checked>
+                            <span><i class="fas fa-tree" style="color: #22AA22;"></i> Parks</span>
+                        </label>
+                        <label class="control-item">
+                            <input type="checkbox" id="toggleBusStops" checked>
+                            <span><i class="fas fa-bus" style="color: #FF8800;"></i> Bus Stops</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="loading-indicator">
+                    <div class="spinner"></div>
+                    <p>Loading GIS data...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Selected Feature Info Panel -->
+    <div id="featureInfoPanel" class="feature-info-panel">
+        <div class="feature-info-content">
+            <button class="close-btn" id="closeFeaturePanel">&times;</button>
+            <h3 id="featureName"></h3>
+            <div id="featureDetails" class="feature-details"></div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
